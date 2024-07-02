@@ -1,12 +1,12 @@
 <?php
 
-class modelStatus
+class modelProcedimentosExame
 {
-    public function listarStatus()
+    public function listarProcedimentosExame()
     {
         try {
             $pdo = Database::conexao();
-            $consulta = $pdo->query("SELECT * FROM tbl_status");
+            $consulta = $pdo->query("SELECT * FROM tbl_procedimentos_exame");
             $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
             return $resultado;
@@ -15,14 +15,14 @@ class modelStatus
         }
     }
 
-    public function cadastrarStatus($descricao)
+    public function cadastrarCargos($descricao_cargo)
     {
         try {
             $pdo = Database::conexao();
-            $inserir = $pdo->prepare("INSERT INTO tbl_status (descricao)
+            $inserir = $pdo->prepare("INSERT INTO tbl_cargos (descricao_cargo)
             VALUES (:descricao)");
 
-            $inserir->bindParam(':descricao', $descricao);
+            $inserir->bindParam(':descricao', $descricao_cargo);
 
             $inserir->execute();
             return true;
@@ -31,13 +31,13 @@ class modelStatus
         }
     }
 
-    public function atualizarStatus($id_status, $descricao) {
+    public function atualizarCargos($id_cargo, $descricao) {
         try {
             $pdo = Database::conexao();
-            $sql = ("UPDATE tbl_status SET id_status = :id_status, descricao = :descricao WHERE id_status = :id_status");
+            $sql = ("UPDATE tbl_cargos SET id_cargo = :id_cargo, descricao_cargo = :descricao_cargo WHERE id_cargo = :id_cargo");
             $atualizar = $pdo->prepare($sql);
 
-            $atualizar->bindParam(':id_status', $id_status);
+            $atualizar->bindParam(':id_cargo', $id_cargo);
             $atualizar->bindParam(':descricao', $descricao);
 
             $atualizar->execute();

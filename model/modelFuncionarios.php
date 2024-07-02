@@ -1,6 +1,6 @@
 <?php
 
-class modelExames
+class modelFuncionarios
 {
     public function listarFuncionarios()
     {
